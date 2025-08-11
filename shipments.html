@@ -10,7 +10,7 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="index.html" class="logo">Rayan<span>Trading</span></a>
+            <a href="index.html" class="logo"><img src="logo.png" alt="Rayan Trading Logo"> <span class="logo-text-rayan">Rayan</span><span class="logo-text-trading">Trading</span></a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -42,10 +42,12 @@
                 <div class="filter-controls">
                     <div class="control-group">
                         <label for="country-filter">Filter by Country</label>
-                        <select id="country-filter">
-                            <option value="all">All Countries</option>
-                            <!-- Options will be dynamically populated -->
-                        </select>
+                        <div class="select-wrapper">
+                            <select id="country-filter">
+                                <option value="all">All Countries</option>
+                                <!-- Options will be dynamically populated -->
+                            </select>
+                        </div>
                     </div>
                     <div class="control-group">
                         <label for="search-input">Search by Make or Model</label>

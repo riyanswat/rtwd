@@ -114,6 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const shipmentsGrid = document.getElementById('shipments-full-grid');
     if (shipmentsGrid) {
         let allShipments = [];
+        let currentGallery = [];
+        let currentIndex = 0;
 
         const renderShipments = (shipments) => {
             if (shipments.length === 0) {
@@ -186,39 +188,69 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })();
 
+        function updateModalImage(index) {
+            const mainImage = document.getElementById('modal-main-image');
+            const thumbnailsContainer = document.querySelector('.modal-thumbnails');
+
+            mainImage.src = `images/${currentGallery[index]}`;
+            mainImage.alt = currentGallery[index];
+
+            const activeThumb = thumbnailsContainer.querySelector('.active');
+            if (activeThumb) activeThumb.classList.remove('active');
+
+            const newActiveThumb = thumbnailsContainer.querySelector(`[data-image-name="${currentGallery[index]}"]`);
+            if (newActiveThumb) newActiveThumb.classList.add('active');
+        }
+
+        function handleKeyDown(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % currentGallery.length;
+                updateModalImage(currentIndex);
+            } else if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                updateModalImage(currentIndex);
+            }
+        }
+
         function openModal(shipment) {
             const modal = document.getElementById('gallery-modal');
             const mainImage = document.getElementById('modal-main-image');
             const thumbnailsContainer = modal.querySelector('.modal-thumbnails');
 
-            mainImage.src = 'images/placeholder.svg';
+            currentGallery = [shipment.coverImage, ...shipment.gallery];
+            currentIndex = 0;
+
+            mainImage.src = `images/${currentGallery[currentIndex]}`;
             mainImage.alt = shipment.make;
 
             thumbnailsContainer.innerHTML = '';
-            const allImages = [shipment.coverImage, ...shipment.gallery];
-
-            allImages.forEach((imgName, index) => {
+            currentGallery.forEach((imgName, index) => {
                 const thumb = document.createElement('img');
-                thumb.src = 'images/placeholder.svg';
+                thumb.src = `images/${imgName}`;
                 thumb.dataset.imageName = imgName;
                 if (index === 0) thumb.classList.add('active');
 
-                thumb.addEventListener('click', (e) => {
-                    mainImage.src = 'images/placeholder.svg';
-                    thumbnailsContainer.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
+                thumb.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateModalImage(currentIndex);
                 });
                 thumbnailsContainer.appendChild(thumb);
             });
 
             modal.style.display = 'flex';
             setTimeout(() => modal.classList.add('show'), 10);
+            document.addEventListener('keydown', handleKeyDown);
         }
 
         function closeModal() {
             const modal = document.getElementById('gallery-modal');
             modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 300);
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.removeEventListener('keydown', handleKeyDown);
+            }, 300);
         }
     }
 

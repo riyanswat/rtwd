@@ -1,5 +1,5 @@
 /* --- FONT IMPORT --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&family=Orbitron:wght@700&display=swap');
 
 /* --- COLOR & FONT PALETTE --- */
 :root {
@@ -17,6 +17,7 @@
     /* Fonts */
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --font-logo: 'Orbitron', sans-serif;
 
     /* Layout */
     --container-width: 1200px;
@@ -89,14 +90,26 @@ a:hover {
 }
 
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-family: var(--font-logo);
+    font-size: 1.6rem; /* Slightly larger than default */
     font-weight: 700;
-    color: var(--color-text-headings);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
-.logo span {
-    color: var(--color-secondary-accent);
+
+.logo img {
+    height: 30px; /* Smaller logo */
+    width: auto;
+}
+
+.logo .logo-text-rayan {
+    color: #391086;
+}
+
+.logo .logo-text-trading {
+    color: #d9141d;
 }
 
 .main-nav ul {
@@ -248,7 +261,7 @@ a:hover {
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Reduced font size */
     color: var(--color-text-muted);
     margin-bottom: 2.5rem;
     max-width: 600px;
@@ -508,6 +521,34 @@ a:hover {
     font-weight: 600;
 }
 
+.social-links {
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: #fff;
+}
+
+.social-icon-facebook {
+    background-color: #1877F2;
+}
+
+.social-icon-facebook:hover {
+    filter: brightness(0.9);
+}
+
 /* --- FORM SUBMISSION POPUP --- */
 .popup {
   position: fixed;
@@ -567,6 +608,39 @@ a:hover {
     color: var(--color-text-light);
     font-family: var(--font-body);
     font-size: 1rem;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.control-group .select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 2.5rem; /* Make space for arrow */
+}
+
+.select-wrapper::after {
+    content: '›';
+    font-size: 1.5rem;
+    color: var(--color-secondary-accent);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.select-wrapper:focus-within::after {
+    transform: translateY(-50%) rotate(270deg);
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: var(--color-primary-accent);
+    box-shadow: 0 0 0 3px rgba(44, 120, 115, 0.3);
 }
 
 .loading-message {
@@ -742,6 +816,10 @@ body {
     }
 
     /* Adjusting other layouts for mobile */
+    .container {
+        padding: 0 1rem; /* Reduce padding on smaller screens */
+    }
+
     .about-story-container {
         grid-template-columns: 1fr;
     }
@@ -752,5 +830,16 @@ body {
 
     .section-padding {
         padding: 4rem 0;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .modal-close {
+        top: 0.5rem;
+        right: 0.8rem;
+        font-size: 2rem;
     }
 }
