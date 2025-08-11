@@ -10,7 +10,12 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="index.html" class="logo">Rayan<span>Trading</span></a>
+            <a href="index.html" class="site-logo" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo.png" alt="Logo" style="height: 50px; margin-right: 10px;">
+                <span style="font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: bold;">
+                    <span style="color: #391086;">Rayan</span> <span style="color: #d9141d;">Trading</span>
+                </span>
+            </a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -66,11 +71,13 @@
         </section>
 
         <!-- Modal Gallery -->
-        <div id="gallery-modal" class="modal-overlay" style="display: none;">
+        <div id="image-modal" class="modal-overlay" style="display: none;">
             <div class="modal-content">
-                <button class="modal-close">&times;</button>
+                <button class="modal-close close-modal">&times;</button>
                 <div class="modal-image-container">
+                    <button class="modal-prev" aria-label="Previous image">&#10094;</button>
                     <img src="" alt="Main vehicle image" id="modal-main-image">
+                    <button class="modal-next" aria-label="Next image">&#10095;</button>
                 </div>
                 <div class="modal-thumbnails">
                     <!-- Thumbnails will be dynamically inserted here -->
