@@ -1,0 +1,22 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "author": "Samuel K.",
+      "location": "Nigeria",
+      "quote": "Rayan Trading made it simple. Found exactly the classic truck I wanted and shipped it safely to Nigeria."
+    },
+    {
+      "id": 2,
+      "author": "Amina T.",
+      "location": "Ghana",
+      "quote": "Professional and transparent throughout the process. Highly recommend their service!"
+    },
+    {
+      "id": 3,
+      "author": "John D.",
+      "location": "USA",
+      "quote": "I was hesitant about importing a car from Japan, but the team at Rayan Trading made the process incredibly easy and transparent. I'm thrilled with my new car."
+    }
+  ]
+}
