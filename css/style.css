@@ -1,5 +1,5 @@
 /* --- FONT IMPORT --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&family=Orbitron:wght@700&display=swap');
 
 /* --- COLOR & FONT PALETTE --- */
 :root {
@@ -17,6 +17,7 @@
     /* Fonts */
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --font-logo: 'Orbitron', sans-serif;
 
     /* Layout */
     --container-width: 1200px;
@@ -89,14 +90,23 @@ a:hover {
 }
 
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-family: var(--font-logo);
+    font-size: 1.8rem; /* Increased size */
     font-weight: 700;
-    color: var(--color-text-headings);
+    color: #391086; /* New color for Rayan */
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
+
+.logo img {
+    height: 40px; /* Increased size */
+    width: auto;
+}
+
 .logo span {
-    color: var(--color-secondary-accent);
+    color: #d9141d; /* New color for Trading */
 }
 
 .main-nav ul {
@@ -248,7 +258,7 @@ a:hover {
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Reduced font size */
     color: var(--color-text-muted);
     margin-bottom: 2.5rem;
     max-width: 600px;
@@ -508,6 +518,33 @@ a:hover {
     font-weight: 600;
 }
 
+.social-links {
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-bg-dark);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #1877F2; /* Facebook Blue */
+    transform: scale(1.1);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    vertical-align: middle;
+}
+
 /* --- FORM SUBMISSION POPUP --- */
 .popup {
   position: fixed;
@@ -567,6 +604,30 @@ a:hover {
     color: var(--color-text-light);
     font-family: var(--font-body);
     font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    font-size: 1rem;
+    color: var(--color-secondary-accent);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: var(--color-primary-accent);
+    box-shadow: 0 0 0 3px rgba(44, 120, 115, 0.3);
 }
 
 .loading-message {
@@ -742,6 +803,10 @@ body {
     }
 
     /* Adjusting other layouts for mobile */
+    .container {
+        padding: 0 1rem; /* Reduce padding on smaller screens */
+    }
+
     .about-story-container {
         grid-template-columns: 1fr;
     }
@@ -752,5 +817,16 @@ body {
 
     .section-padding {
         padding: 4rem 0;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .modal-close {
+        top: 0.5rem;
+        right: 0.8rem;
+        font-size: 2rem;
     }
 }
