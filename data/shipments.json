@@ -43,6 +43,17 @@
       "imageFolder": "car2",
       "coverImage": "cover.jpg",
       "gallery": []
+    },
+    {
+      "id": 5,
+      "make": "Lexus",
+      "model": "UX 250",
+      "year": 2023,
+      "destination": "UK",
+      "tags": ["SUV", "JDM", "4x4"],
+      "imageFolder": "car1",
+      "coverImage": "cover.jpg",
+      "gallery": ["image1.jpg", "image2.jpg", "image3.jpg"]
     }
   ]
 }
