@@ -54,6 +54,17 @@
       "imageFolder": "car1",
       "coverImage": "cover.jpg",
       "gallery": ["image1.jpg", "image2.jpg", "image3.jpg"]
+    },
+    {
+      "id": 6,
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": 2019,
+      "destination": "Australia",
+      "tags": ["SUV", "JDM", "4x4"],
+      "imageFolder": "car1",
+      "coverImage": "cover.jpg",
+      "gallery": ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"]
     }
   ]
 }
