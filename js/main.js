@@ -117,8 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentShipmentImages = [];
         let currentImageIndex = 0;
         const modal = document.getElementById('image-modal');
-        const mainImage = document.getElementById('modal-main-image');
-        const thumbnailsContainer = modal.querySelector('.modal-thumbnails');
+        let mainImage, thumbnailsContainer;
+        if (modal) {
+            mainImage = document.getElementById('modal-main-image');
+            thumbnailsContainer = modal.querySelector('.modal-thumbnails');
+        }
 
         const renderShipments = (shipments) => {
             if (shipments.length === 0) {
@@ -209,44 +212,46 @@ document.addEventListener('DOMContentLoaded', function() {
             countryFilter.addEventListener('change', filterAndRender);
             document.getElementById('search-input').addEventListener('input', filterAndRender);
 
-            shipmentsGrid.addEventListener('click', e => {
-                const card = e.target.closest('.shipment-card');
-                if (card) {
-                    const shipmentId = parseInt(card.dataset.shipmentId, 10);
-                    const shipment = allShipments.find(s => s.id === shipmentId);
-                    if (shipment) openModal(shipment);
-                }
-            });
+            if (modal) {
+                shipmentsGrid.addEventListener('click', e => {
+                    const card = e.target.closest('.shipment-card');
+                    if (card) {
+                        const shipmentId = parseInt(card.dataset.shipmentId, 10);
+                        const shipment = allShipments.find(s => s.id === shipmentId);
+                        if (shipment) openModal(shipment);
+                    }
+                });
 
-            modal.addEventListener('click', e => {
-                if (e.target === modal || e.target.classList.contains('close-modal')) {
-                    closeModal();
-                }
-            });
+                modal.addEventListener('click', e => {
+                    if (e.target === modal || e.target.classList.contains('close-modal')) {
+                        closeModal();
+                    }
+                });
 
-            modal.querySelector('.modal-next').addEventListener('click', () => {
-                const nextIndex = (currentImageIndex + 1) % currentShipmentImages.length;
-                showImage(nextIndex);
-            });
+                modal.querySelector('.modal-next').addEventListener('click', () => {
+                    const nextIndex = (currentImageIndex + 1) % currentShipmentImages.length;
+                    showImage(nextIndex);
+                });
 
-            modal.querySelector('.modal-prev').addEventListener('click', () => {
-                const prevIndex = (currentImageIndex - 1 + currentShipmentImages.length) % currentShipmentImages.length;
-                showImage(prevIndex);
-            });
-        })();
+                modal.querySelector('.modal-prev').addEventListener('click', () => {
+                    const prevIndex = (currentImageIndex - 1 + currentShipmentImages.length) % currentShipmentImages.length;
+                    showImage(prevIndex);
+                });
 
-        // Keyboard navigation for modal
-        document.addEventListener('keydown', function (e) {
-            if (!modal.classList.contains('show')) return;
+                // Keyboard navigation for modal
+                document.addEventListener('keydown', function (e) {
+                    if (!modal.classList.contains('show')) return;
 
-            if (e.key === 'ArrowRight') {
-                modal.querySelector('.modal-next')?.click();
-            } else if (e.key === 'ArrowLeft') {
-                modal.querySelector('.modal-prev')?.click();
-            } else if (e.key === 'Escape') {
-                closeModal();
+                    if (e.key === 'ArrowRight') {
+                        modal.querySelector('.modal-next')?.click();
+                    } else if (e.key === 'ArrowLeft') {
+                        modal.querySelector('.modal-prev')?.click();
+                    } else if (e.key === 'Escape') {
+                        closeModal();
+                    }
+                });
             }
-        });
+        })();
     }
 
     function showPopup(message) {
