@@ -7,7 +7,7 @@
     --color-bg-dark: #011a27;       /* Very dark navy - Main background */
     --color-bg-medium: #063852;    /* Richer blue - Card backgrounds, footer */
     --color-primary-accent: #2c7873; /* Teal - Accents, buttons */
-    --color-secondary-accent: #0f8bf0; /* Orange/Gold - CTAs, highlights */
+    --color-secondary-accent: #f0810f; /* Orange/Gold - CTAs, highlights */
 
     /* Text colors */
     --color-text-light: #e0e0e0;     /* Light gray for body text */
@@ -60,12 +60,11 @@ p {
 a {
     color: var(--color-secondary-accent);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #077bda; /* Lighter shade of the gold accent */
-    
+    color: #ff9a2f; /* Lighter shade of the gold accent */
 }
 
 /* --- LAYOUT --- */
@@ -98,6 +97,36 @@ a:hover {
 }
 .logo span {
     color: var(--color-secondary-accent);
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.site-logo img {
+    height: 50px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover img {
+    transform: scale(1.1);
+}
+
+.site-logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.site-logo-text-main {
+    color: #391086;
+}
+
+.site-logo-text-secondary {
+    color: #d9141d;
 }
 
 .main-nav ul {
@@ -754,6 +783,10 @@ body {
     .section-padding {
         padding: 4rem 0;
     }
+
+    .site-logo-text {
+        display: none;
+    }
 }
 
 /* Prevent weird horizontal scrolling on mobile */
@@ -846,31 +879,14 @@ html, body {
     font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
-    transition: color opacity 0.2s ease;
+    transition: opacity 0.3s ease;
 }
 
 .social-btn:hover {
-    opacity: 0.90;
-    text-decoration: none;
-
-
+    opacity: 0.85;
 }
 
 .social-btn-facebook {
     background-color: #1877F2;
     color: #fff;
-}
-
-.social-btn-facebook:hover {
-    color: #fff;
-    background-color: #1970e2;
-}
-
-.social-btn-facebook:active {
-    background-color: #166ad6;
-    transform: translateY(1px);
-}
-
-.email:hover {
-    text-decoration: underline;
 }
