@@ -108,12 +108,19 @@ a:hover {
 .site-logo img {
     height: 50px;
     margin-right: 10px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+    pointer-events: none;
 }
 
 .site-logo-text {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
 }
 
 .site-logo-text-main {
