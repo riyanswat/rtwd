@@ -302,6 +302,14 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+    // --- GLOBAL SITE-WIDE CODE ---
+    const logoLink = document.getElementById('site-logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    }
+
     // Call functions on page load
     setActiveNav();
 });
