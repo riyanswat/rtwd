@@ -2,9 +2,9 @@
   "testimonials": [
     {
       "id": 1,
-      "author": "Samuel K.",
-      "location": "Nigeria",
-      "quote": "Rayan Trading made it simple. Found exactly the classic truck I wanted and shipped it safely to Nigeria."
+      "author": "Tariq Sohail",
+      "location": "Pakistan",
+      "quote": "I’ve imported several cars through Rayan Trading and can confidently say their service is outstanding. They’re honest, transparent and clear every step of the way. No hidden fees, no surprises, just smooth, reliable service. I trust them and recommend them to anyone looking for hassle-free vehicle imports. I’ll definitely use them again."
     },
     {
       "id": 2,
@@ -17,6 +17,12 @@
       "author": "John D.",
       "location": "USA",
       "quote": "I was hesitant about importing a car from Japan, but the team at Rayan Trading made the process incredibly easy and transparent. I'm thrilled with my new car."
+    },
+    {
+      "id": 4,
+      "author": "Samuel K.",
+      "location": "Nigeria",
+      "quote": "Rayan Trading made it simple. Found exactly the classic truck I wanted and shipped it safely to Nigeria."
     }
   ]
 }

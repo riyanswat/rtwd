@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!data || !data.testimonials) return;
             const container = document.getElementById('testimonials-preview-container');
             if (!container) return;
-            const testimonialsToShow = data.testimonials.slice(0, 2);
+            const testimonialsToShow = data.testimonials.slice(0, 4);
             let html = '';
             testimonialsToShow.forEach(testimonial => {
                 html += `
