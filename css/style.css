@@ -104,6 +104,7 @@ a:hover {
     align-items: center;
     text-decoration: none;
     position: relative;
+    -webkit-tap-highlight-color: transparent; /* Disable tap highlight on mobile */
 }
 
 .site-logo::after {
