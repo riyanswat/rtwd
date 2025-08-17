@@ -986,3 +986,30 @@ html, body {
 @media (max-width: 768px) {
     .dealer-cta { text-align: left; }
 }
+
+/* --- DEALER CTA BUTTON (Homepage pointer simplified) --- */
+.dealer-cta-btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    background-color: var(--color-secondary-accent); /* gold/orange accent */
+    color: #111; /* dark gray/black text */
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    letter-spacing: 0.3px;
+    /* box-shadow: 0 4px 10px rgba(0,0,0,0.15); */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.dealer-cta-btn:hover {
+    /* Keep the same background color */
+    background-color: var(--color-secondary-accent); /* same as default */
+    transform: translateY(-2px);
+    /* box-shadow: 0 6px 14px rgba(0,0,0,0.25); */
+}
+
+#dealer-cta-btn:hover {
+    /* transform: translateX(600px); */
+    color: #111;
+}
