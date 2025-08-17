@@ -940,6 +940,17 @@ body {
     color: #fff;
 }
 
+.social-btn-google {
+    background-color: #fff; /* white background */
+    color: #000; /* black text if needed */
+}
+
+
+.social-btn-google:hover {
+    /* opacity: 0.85; */
+    transform: translateY(-2px);
+}
+
 
 
 
