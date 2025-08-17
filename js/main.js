@@ -1,3 +1,9 @@
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.hero-title').classList.add('visible');
+    document.querySelector('.hero-subtitle').classList.add('visible');
+});
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Function to set the active state in the navigation
     const setActiveNav = () => {

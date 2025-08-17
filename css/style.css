@@ -1059,3 +1059,20 @@ body {
     /* transform: translateX(600px); */
     color: #111;
 }
+
+
+
+
+
+
+
+.hero-title, .hero-subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-title.visible, .hero-subtitle.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
