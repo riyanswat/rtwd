@@ -1,7 +1,7 @@
-window.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.hero-title').classList.add('visible');
-    document.querySelector('.hero-subtitle').classList.add('visible');
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//     document.querySelector('.hero-title').classList.add('visible');
+//     document.querySelector('.hero-subtitle').classList.add('visible');
+// });
 
 
 document.addEventListener('DOMContentLoaded', function() {
