@@ -1,3 +1,9 @@
+// window.addEventListener('DOMContentLoaded', () => {
+//     document.querySelector('.hero-title').classList.add('visible');
+//     document.querySelector('.hero-subtitle').classList.add('visible');
+// });
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Function to set the active state in the navigation
     const setActiveNav = () => {
@@ -57,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!data || !data.testimonials) return;
             const container = document.getElementById('testimonials-preview-container');
             if (!container) return;
-            const testimonialsToShow = data.testimonials.slice(0, 2);
+            const testimonialsToShow = data.testimonials.slice(0, 4);
             let html = '';
             testimonialsToShow.forEach(testimonial => {
                 html += `
@@ -114,6 +120,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const shipmentsGrid = document.getElementById('shipments-full-grid');
     if (shipmentsGrid) {
         let allShipments = [];
+        let currentShipmentImages = [];
+        let currentImageIndex = 0;
+        const modal = document.getElementById('image-modal');
+        let mainImage, thumbnailsContainer;
+        if (modal) {
+            mainImage = document.getElementById('modal-main-image');
+            thumbnailsContainer = modal.querySelector('.modal-thumbnails');
+        }
 
         const renderShipments = (shipments) => {
             if (shipments.length === 0) {
@@ -134,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const filterAndRender = () => {
             const country = document.getElementById('country-filter').value;
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
-
             const filteredShipments = allShipments.filter(shipment => {
                 const matchesCountry = (country === 'all' || shipment.destination === country);
                 const matchesSearch = (
@@ -146,6 +159,42 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             renderShipments(filteredShipments);
         };
+
+        function showImage(index) {
+            mainImage.src = 'images/placeholder.svg'; // Replace with actual path construction later
+            mainImage.alt = currentShipmentImages[index];
+            currentImageIndex = index;
+
+            thumbnailsContainer.querySelector('.active')?.classList.remove('active');
+            thumbnailsContainer.children[index]?.classList.add('active');
+        }
+
+        function openModal(shipment) {
+            currentShipmentImages = [shipment.coverImage, ...shipment.gallery];
+            thumbnailsContainer.innerHTML = '';
+
+            currentShipmentImages.forEach((imgName, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = 'images/placeholder.svg'; // Replace with actual path
+                thumb.dataset.index = index;
+                if (index === 0) thumb.classList.add('active');
+                thumb.addEventListener('click', () => showImage(index));
+                thumbnailsContainer.appendChild(thumb);
+            });
+
+            showImage(0);
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            }, 300);
+        }
 
         (async function initShipmentsPage() {
             const data = await fetchData('data/shipments.json');
@@ -169,57 +218,46 @@ document.addEventListener('DOMContentLoaded', function() {
             countryFilter.addEventListener('change', filterAndRender);
             document.getElementById('search-input').addEventListener('input', filterAndRender);
 
-            const modal = document.getElementById('gallery-modal');
-            shipmentsGrid.addEventListener('click', e => {
-                const card = e.target.closest('.shipment-card');
-                if (card) {
-                    const shipmentId = parseInt(card.dataset.shipmentId);
-                    const shipment = allShipments.find(s => s.id === shipmentId);
-                    openModal(shipment);
-                }
-            });
-
-            modal.addEventListener('click', e => {
-                if (e.target === modal || e.target.classList.contains('modal-close')) {
-                    closeModal();
-                }
-            });
-        })();
-
-        function openModal(shipment) {
-            const modal = document.getElementById('gallery-modal');
-            const mainImage = document.getElementById('modal-main-image');
-            const thumbnailsContainer = modal.querySelector('.modal-thumbnails');
-
-            mainImage.src = 'images/placeholder.svg';
-            mainImage.alt = shipment.make;
-
-            thumbnailsContainer.innerHTML = '';
-            const allImages = [shipment.coverImage, ...shipment.gallery];
-
-            allImages.forEach((imgName, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = 'images/placeholder.svg';
-                thumb.dataset.imageName = imgName;
-                if (index === 0) thumb.classList.add('active');
-
-                thumb.addEventListener('click', (e) => {
-                    mainImage.src = 'images/placeholder.svg';
-                    thumbnailsContainer.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
+            if (modal) {
+                shipmentsGrid.addEventListener('click', e => {
+                    const card = e.target.closest('.shipment-card');
+                    if (card) {
+                        const shipmentId = parseInt(card.dataset.shipmentId, 10);
+                        const shipment = allShipments.find(s => s.id === shipmentId);
+                        if (shipment) openModal(shipment);
+                    }
                 });
-                thumbnailsContainer.appendChild(thumb);
-            });
 
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
-        }
+                modal.addEventListener('click', e => {
+                    if (e.target === modal || e.target.classList.contains('close-modal')) {
+                        closeModal();
+                    }
+                });
 
-        function closeModal() {
-            const modal = document.getElementById('gallery-modal');
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 300);
-        }
+                modal.querySelector('.modal-next').addEventListener('click', () => {
+                    const nextIndex = (currentImageIndex + 1) % currentShipmentImages.length;
+                    showImage(nextIndex);
+                });
+
+                modal.querySelector('.modal-prev').addEventListener('click', () => {
+                    const prevIndex = (currentImageIndex - 1 + currentShipmentImages.length) % currentShipmentImages.length;
+                    showImage(prevIndex);
+                });
+
+                // Keyboard navigation for modal
+                document.addEventListener('keydown', function (e) {
+                    if (!modal.classList.contains('show')) return;
+
+                    if (e.key === 'ArrowRight') {
+                        modal.querySelector('.modal-next')?.click();
+                    } else if (e.key === 'ArrowLeft') {
+                        modal.querySelector('.modal-prev')?.click();
+                    } else if (e.key === 'Escape') {
+                        closeModal();
+                    }
+                });
+            }
+        })();
     }
 
     function showPopup(message) {
@@ -269,6 +307,14 @@ document.addEventListener('DOMContentLoaded', function() {
         el.classList.add('fade-in-up');
         observer.observe(el);
     });
+
+    // --- GLOBAL SITE-WIDE CODE ---
+    const logoLink = document.getElementById('site-logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    }
 
     // Call functions on page load
     setActiveNav();
