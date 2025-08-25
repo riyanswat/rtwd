@@ -1,1 +1,1 @@
-https://riyanswat.github.io/rtw/
+https://riyanswat.github.io/rtwd/
